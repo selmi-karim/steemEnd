@@ -9,16 +9,16 @@ router.route('/')
 
 
 router.route('/:userId')
-    /** GET /api/home/:userId - Get home */
+    /** GET /api/home/:userId - Get latest friends posts for specific user */
     .get(homeCtrl.get)
 
 
 router.route('/trending')
-    /** GET /api/home/:userId - Get trending */
+    /** GET /api/home/:userId - Get most trending posts */
     .get(homeCtrl.trending)
 
 router.route('/favoris/:userId')
-    /** GET /api/home/:userId - Get trending */
+    /** GET /api/home/:userId - Get latest posts liked by specific user */
     .get(homeCtrl.favoris)
 
 module.exports = router;
