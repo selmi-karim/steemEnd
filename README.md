@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Express & mongoose REST API Boilerplate in ES6 with Code Coverage [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
 [![Build Status](https://img.shields.io/travis/kunalkapadia/express-mongoose-es6-rest-api/master.svg?style=flat-square)](https://travis-ci.org/kunalkapadia/express-mongoose-es6-rest-api)
@@ -189,3 +190,6 @@ Your support is greatly appreciated.
 
 Kunal Kapadia – [@kunalkapadia12](https://twitter.com/kunalkapadia12) – kunalkapadia12@gmail.com
 
+=======
+# steemEnd
+>>>>>>> db7303dbc182746297c0e3bf0ae0c4ca8ceefff8
