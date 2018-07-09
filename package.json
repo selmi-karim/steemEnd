@@ -58,6 +58,7 @@
     "method-override": "^2.3.10",
     "mongoose": "4.7.4",
     "morgan": "1.9.0",
+    "steem": "^0.7.1",
     "winston": "2.4.1"
   },
   "devDependencies": {
