@@ -1,5 +1,16 @@
 
 
+
+
+/**
+ * Get user
+ * @returns {Posts[]}
+ */
+function get(req, res) {
+    return res.json(req.user);
+}
+
+
 /**
  * Get Latest posts.
  * @property {number} req.query.size - Number of posts.
@@ -14,17 +25,20 @@ function latest(req, res, next) {
 
 
 /**
- * Get user list.
- * @property {number} req.query.skip - Number of users to be skipped.
- * @property {number} req.query.limit - Limit number of users to be returned.
- * @returns {User[]}
+ * Get most trending posts
+ * @returns {Posts[]}
  */
-function list(req, res, next) {
-    const { limit = 50, skip = 0 } = req.query;
-    User.list({ limit, skip })
-        .then(users => res.json(users))
-        .catch(e => next(e));
+function trending(req, res) {
+    return res.json(req.user);
 }
 
 
-module.exports = { get };
+/**
+ * Get latest posts liked by specific user
+ * @returns {Posts[]}
+ */
+function favoris(req, res) {
+    return res.json(req.user);
+}
+
+module.exports = { get, latest, favoris, trending };
