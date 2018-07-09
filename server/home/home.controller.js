@@ -7,7 +7,8 @@
  * @returns {Posts[]}
  */
 function get(req, res) {
-    return res.json(req.user);
+
+
 }
 
 
@@ -29,7 +30,6 @@ function latest(req, res, next) {
  * @returns {Posts[]}
  */
 function trending(req, res) {
-    return res.json(req.user);
 }
 
 
@@ -38,7 +38,7 @@ function trending(req, res) {
  * @returns {Posts[]}
  */
 function favoris(req, res) {
-    return res.json(req.user);
+
 }
 
 module.exports = { get, latest, favoris, trending };
