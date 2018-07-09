@@ -1,3 +1,4 @@
+const steem = require('steem');
 
 
 
