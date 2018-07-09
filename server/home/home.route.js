@@ -17,6 +17,7 @@ router.route('/trending')
     /** GET /api/home/:userId - Get most trending posts */
     .get(homeCtrl.trending)
 
+
 router.route('/favoris/:userId')
     /** GET /api/home/:userId - Get latest posts liked by specific user */
     .get(homeCtrl.favoris)
