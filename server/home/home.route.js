@@ -4,7 +4,7 @@ const homeCtrl = require('./home.controller');
 const router = express.Router(); // eslint-disable-line new-cap
 
 router.route('/')
-    /** GET /api/home - Get list of users */
+    /** GET /api/home - Get most trending posts */
     .get(homeCtrl.trending)
 
 
@@ -13,9 +13,9 @@ router.route('/:userName')
     .get(homeCtrl.get)
 
 
-router.route('/new')
+router.route('/latest')
     /** GET /api/home/:userId - Get most trending posts */
-    .get(homeCtrl.new)
+    .get(homeCtrl.latest)
 
 
 router.route('/favoris/:userName')
