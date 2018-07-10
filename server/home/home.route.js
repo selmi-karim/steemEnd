@@ -5,20 +5,20 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 router.route('/')
     /** GET /api/home - Get list of users */
-    .get(homeCtrl.latest)
+    .get(homeCtrl.trending)
 
 
-router.route('/:userId')
+router.route('/:userName')
     /** GET /api/home/:userId - Get latest friends posts for specific user */
     .get(homeCtrl.get)
 
 
-router.route('/trending')
+router.route('/new')
     /** GET /api/home/:userId - Get most trending posts */
-    .get(homeCtrl.trending)
+    .get(homeCtrl.new)
 
 
-router.route('/favoris/:userId')
+router.route('/favoris/:userName')
     /** GET /api/home/:userId - Get latest posts liked by specific user */
     .get(homeCtrl.favoris)
 
