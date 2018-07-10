@@ -1,14 +1,13 @@
 const steem = require('steem');
 
 
-
-
 /**
- * Get user
+ * Get Latest posts.
+ * @property {number} req.query.size - Number of posts.
  * @returns {Posts[]}
  */
 function get(req, res) {
-
+    const { size = 10 } = req.query;  // by default 10 posts
 
 }
 
@@ -31,6 +30,7 @@ function latest(req, res, next) {
  * @returns {Posts[]}
  */
 function trending(req, res) {
+    
 }
 
 
