@@ -5,7 +5,7 @@ const steem = require('steem')
  * @property {number} req.query.size - Number of posts.
  * @returns {Posts[]}
  */
-function get(req, res) {
+function getUserPosts(req, res) {
     const { size = 10 } = req.query  // by default 10 posts
     const { userName } = req.params
 
@@ -25,7 +25,7 @@ function get(req, res) {
  * @property {number} req.query.size - Number of posts.
  * @returns {Posts[]}
  */
-function latest(req, res) {
+function getNew(req, res) {
     const { size = 10 } = req.query  // by default 10 posts
     const query = {
         tag: 'photography', // This tag is used to filter the results by a specific post tag
@@ -48,7 +48,7 @@ function latest(req, res) {
  * @property {number} req.query.size - Number of posts.
  * @returns {Posts[]}
  */
-function trending(req, res) {
+function getTrending(req, res) {
     const { size = 10 } = req.query  // by default 10 posts
     const query = {
         tag: 'photography', // This tag is used to filter the results by a specific post tag
@@ -71,7 +71,7 @@ function trending(req, res) {
  * @property {number} req.query.size - Number of posts.
  * @returns {Posts[]}
  */
-function hot(req, res) {
+function getHot(req, res) {
     const { size = 10 } = req.query  // by default 10 posts
     const query = {
         tag: 'photography', // This tag is used to filter the results by a specific post tag
@@ -88,4 +88,4 @@ function hot(req, res) {
     });
 }
 
-module.exports = { get, latest, favoris, trending }
+module.exports = { getUserPosts, getNew, getHot, getTrending }
