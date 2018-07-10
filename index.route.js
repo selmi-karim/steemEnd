@@ -1,7 +1,7 @@
 const express = require('express');
 const userRoutes = require('./server/user/user.route');
 const authRoutes = require('./server/auth/auth.route');
-const homeRoutes = require('./server/home/home.route');
+const postRoutes = require('./server/post/post.route');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -20,6 +20,6 @@ router.use('/auth', authRoutes);
 
 
 // mount home routes at /home
-router.use('/home', homeRoutes);
+router.use('/post', postRoutes);
 
 module.exports = router;
