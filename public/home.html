@@ -10,7 +10,9 @@
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
-                        $("#display").append("<p>" + index + ": " + element.title + "</p>")
+                        $("#display").append("<p>" + index + ": " + JSON.stringify(element) + "</p>")
+                        if (element.body)
+                            $("#display").append('<img height="100" width="100" src=' + element.body[0] + ' />')
                     });
 
                 });
@@ -20,7 +22,9 @@
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
-                        $("#display").append("<p>" + index + ": " + element.title + "</p>")
+                        $("#display").append("<p>" + index + ": " + JSON.stringify(element) + "</p>")
+                        if (element.body)
+                            $("#display").append('<img height="100" width="100" src=' + element.body[0] + ' />')
                     });
 
                 });
@@ -29,7 +33,9 @@
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
-                        $("#display").append("<p>" + index + ": " + element.title + "</p>")
+                        $("#display").append("<p>" + index + ": " + JSON.stringify(element) + "</p>")
+                        if (element.body)
+                            $("#display").append('<img height="100" width="100" src=' + element.body[0] + ' />')
                     });
 
                 });
@@ -38,7 +44,9 @@
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
-                        $("#display").append("<p>" + index + ": " + element.title + "</p>")
+                        $("#display").append("<p>" + index + ": " + JSON.stringify(element) + "</p>")
+                        if (element.body)
+                            $("#display").append('<img height="100" width="100" src=' + element.body[0] + ' />')
                     });
 
                 });
