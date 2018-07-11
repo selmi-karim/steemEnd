@@ -23,17 +23,13 @@ function getUserPosts(req, res) {
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByBlog(query, function (err, result) {
-        console.log(err, result)
-        var ss = []
+        var newObject = []
         result.forEach(element => {
-            const obj = {
-                title: element.title, body: getImgUrl(element.body), url: element.url, pending_payout_value: element.pending_payout_value,
-                net_votes: element.net_votes
-            }
-            ss.push(obj)
+            element.body = getImgUrl(element.body)
+            newObject.push(element)
         });
 
-        res.send(ss)
+        res.send(newObject)
     });
 }
 
@@ -50,17 +46,13 @@ function getNew(req, res) {
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByCreated(query, function (err, result) {
-        console.log(err, result)
-        var ss = []
+        var newObject = []
         result.forEach(element => {
-            const obj = {
-                title: element.title, body: getImgUrl(element.body), url: element.url, pending_payout_value: element.pending_payout_value,
-                net_votes: element.net_votes
-            }
-            ss.push(obj)
+            element.body = getImgUrl(element.body)
+            newObject.push(element)
         });
 
-        res.send(ss)
+        res.send(newObject)
 
     });
 }
@@ -78,17 +70,14 @@ function getTrending(req, res) {
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByTrending(query, function (err, result) {
-        console.log(err, result)
-        var ss = []
+        //console.log(err, result)
+        var newObject = []
         result.forEach(element => {
-            const obj = {
-                title: element.title, body: getImgUrl(element.body), url: element.url, pending_payout_value: element.pending_payout_value,
-                net_votes: element.net_votes
-            }
-            ss.push(obj)
+            element.body = getImgUrl(element.body)
+            newObject.push(element)
         });
 
-        res.send(ss)
+        res.send(newObject)
     });
 }
 
@@ -105,17 +94,13 @@ function getHot(req, res) {
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByHot(query, function (err, result) {
-        console.log(err, result)
-        var ss = []
+        var newObject = []
         result.forEach(element => {
-            const obj = {
-                title: element.title, body: getImgUrl(element.body), url: element.url, pending_payout_value: element.pending_payout_value,
-                net_votes: element.net_votes
-            }
-            ss.push(obj)
+            element.body = getImgUrl(element.body)
+            newObject.push(element)
         });
 
-        res.send(ss)
+        res.send(newObject)
     });
 }
 
