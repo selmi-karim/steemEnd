@@ -9,7 +9,7 @@ router.route('/trending')
 
 
 router.route('/:username')
-    /** GET /api/home/:userId - Get latest friends posts for specific user */
+    /** GET /api/home/:userId - Get Latest posts of specific user. */
     .get(homeCtrl.getUserPosts)
 
 
