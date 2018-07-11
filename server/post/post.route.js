@@ -8,7 +8,7 @@ router.route('/trending')
     .get(homeCtrl.getTrending)
 
 
-router.route('/:username')
+router.route('/username/:username')
     /** GET /api/home/:userId - Get Latest posts of specific user. */
     .get(homeCtrl.getUserPosts)
 
