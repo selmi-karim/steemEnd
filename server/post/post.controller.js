@@ -6,11 +6,12 @@ const steem = require('steem')
  * @returns {Posts[]}
  */
 function getUserPosts(req, res) {
+    console.log('--------'+req.params)
     const { size = 10 } = req.query  // by default 10 posts
-    const { userName } = req.params
+    const { username } = req.params
 
     const query = {
-        tag: userName, // This tag is used to filter the results by a specific post tag
+        tag: username, // This tag is used to filter the results by a specific post tag
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByBlog(query, function (err, result) {
