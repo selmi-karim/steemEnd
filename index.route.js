@@ -26,23 +26,7 @@ router.use('/post', postRoutes);
 
 // trending 
 router.get('/', (req, res) =>
-  res.sendfile(__dirname + '/public/trending.html')
+  res.sendfile(__dirname + '/public/home.html')
 );
-
-// new posts
-router.get('/', (req, res) =>
-  res.sendfile(__dirname + '/public/new.html')
-);
-
-// hot posts
-router.get('/', (req, res) =>
-  res.sendfile(__dirname + '/public/hot.html')
-);
-
-// user posts
-router.get('/', (req, res) =>
-  res.sendfile(__dirname + '/public/userPosts.html')
-);
-
 
 module.exports = router;
