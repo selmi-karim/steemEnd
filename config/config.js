@@ -14,7 +14,7 @@ const envVarsSchema = Joi.object({
     .when('NODE_ENV', {
       is: Joi.string().equal('development'),
       then: Joi.boolean().default(true),
-      otherwise: Joi.boolean().default(false)   
+      otherwise: Joi.boolean().default(false)
     }),
   JWT_SECRET: Joi.string().required()
     .description('JWT Secret required to sign'),
@@ -27,7 +27,7 @@ const envVarsSchema = Joi.object({
 
 const { error, value: envVars } = Joi.validate(process.env, envVarsSchema);
 if (error) {
-  //throw new Error(`Config validation error: ${error.message}`);
+  throw new Error(`Config validation error: ${error.message}`);
 }
 
 const config = {
