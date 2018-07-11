@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $("button").click(function(){
-        $.get("http://localhost:4040/api/post/trending/", function(data, status){
-            alert("Status: " + status);
-            data.forEach(element => {
-                $("ol").append("<li>"+element.title+"</li>");
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#trending").click(function () {
+                $.get("http://localhost:4040/api/post/trending/", function (data, status) {
+                    alert("Status: " + status);
+                    $('#display').empty()
+                    data.forEach((element, index) => {
+                        $("#display").append("<p>" + index + ": " + element.title + "</p>")
+                    });
+
+                });
             });
-            
+            $("#new").click(function () {
+                $.get("http://localhost:4040/api/post/new/", function (data, status) {
+                    alert("Status: " + status);
+                    $('#display').empty()
+                    data.forEach((element, index) => {
+                        $("#display").append("<p>" + index + ": " + element.title + "</p>")
+                    });
+
+                });
+            }); $("#hot").click(function () {
+                $.get("http://localhost:4040/api/post/hot/", function (data, status) {
+                    alert("Status: " + status);
+                    $('#display').empty()
+                    data.forEach((element, index) => {
+                        $("#display").append("<p>" + index + ": " + element.title + "</p>")
+                    });
+
+                });
+            }); $("#userposts").click(function () {
+                $.get("http://localhost:4040/api/post/username/borepstein", function (data, status) {
+                    alert("Status: " + status);
+                    $('#display').empty()
+                    data.forEach((element, index) => {
+                        $("#display").append("<p>" + index + ": " + element.title + "</p>")
+                    });
+
+                });
+            });
         });
-    });
-});
-</script>
+    </script>
 </head>
+
 <body>
 
-<button>Trending</button>
-<ol></ol>
+    <button id="trending">Trending</button>
+    <button id="new">new</button>
+    <button id="hot">hot</button>
+    <button id="userposts">user posts</button>
+    <div id="display"></div>
+
 </body>
+
 </html>
