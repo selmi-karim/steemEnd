@@ -6,7 +6,6 @@ const steem = require('steem')
  * @returns {Posts[]}
  */
 function getUserPosts(req, res) {
-    console.log('--------'+req.params)
     const { size = 10 } = req.query  // by default 10 posts
     const { username } = req.params
 
@@ -39,7 +38,7 @@ function getNew(req, res) {
             ss.push(element.body)
         });*/
         res.send(result)
-        
+
     });
 }
 
@@ -62,7 +61,7 @@ function getTrending(req, res) {
             ss.push(element.body)
         });*/
         res.send(result)
-        
+
     });
 }
 
@@ -85,7 +84,7 @@ function getHot(req, res) {
             ss.push(element.body)
         });*/
         res.send(result)
-        
+
     });
 }
 
