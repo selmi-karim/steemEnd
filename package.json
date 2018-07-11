@@ -11,6 +11,7 @@
     "yarn": ">=1.5.1"
   },
   "scripts": {
+    "dev": "gulp serve",
     "start": "node index.js",
     "start:debug": "cross-env DEBUG=steemend:* yarn start",
     "lint": "esw *.js server config --color",
