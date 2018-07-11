@@ -1,5 +1,14 @@
 const steem = require('steem')
 
+
+/**
+ * private function to extract img from text
+ */
+
+function getImgUrl(text) {
+    const regex = /(https?:\/\/steepshot.org\/api\/[^\s]+)/g;
+    return text.replace(')', ' ').match(regex)
+}
 /**
  * Get Latest posts of specific user.
  * @property {number} req.query.size - Number of posts.
@@ -15,7 +24,16 @@ function getUserPosts(req, res) {
     };
     steem.api.getDiscussionsByBlog(query, function (err, result) {
         console.log(err, result)
-        res.send(result)
+        var ss = []
+        result.forEach(element => {
+            const obj = {
+                title: element.title, body: getImgUrl(element.body), url: element.url, pending_payout_value: element.pending_payout_value,
+                net_votes: element.net_votes
+            }
+            ss.push(obj)
+        });
+
+        res.send(ss)
     });
 }
 
@@ -28,16 +46,21 @@ function getUserPosts(req, res) {
 function getNew(req, res) {
     const { size = 10 } = req.query  // by default 10 posts
     const query = {
-        tag: 'photography', // This tag is used to filter the results by a specific post tag
+        tag: 'steepshot', // This tag is used to filter the results by a specific post tag
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByCreated(query, function (err, result) {
         console.log(err, result)
-        /*result.forEach(element => {
-            ss.push(element.title)
-            ss.push(element.body)
-        });*/
-        res.send(result)
+        var ss = []
+        result.forEach(element => {
+            const obj = {
+                title: element.title, body: getImgUrl(element.body), url: element.url, pending_payout_value: element.pending_payout_value,
+                net_votes: element.net_votes
+            }
+            ss.push(obj)
+        });
+
+        res.send(ss)
 
     });
 }
@@ -51,17 +74,21 @@ function getNew(req, res) {
 function getTrending(req, res) {
     const { size = 10 } = req.query  // by default 10 posts
     const query = {
-        tag: 'photography', // This tag is used to filter the results by a specific post tag
+        tag: 'steepshot', // This tag is used to filter the results by a specific post tag
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByTrending(query, function (err, result) {
         console.log(err, result)
-        /*result.forEach(element => {
-            ss.push(element.title)
-            ss.push(element.body)
-        });*/
-        res.send(result)
+        var ss = []
+        result.forEach(element => {
+            const obj = {
+                title: element.title, body: getImgUrl(element.body), url: element.url, pending_payout_value: element.pending_payout_value,
+                net_votes: element.net_votes
+            }
+            ss.push(obj)
+        });
 
+        res.send(ss)
     });
 }
 
@@ -74,17 +101,21 @@ function getTrending(req, res) {
 function getHot(req, res) {
     const { size = 10 } = req.query  // by default 10 posts
     const query = {
-        tag: 'photography', // This tag is used to filter the results by a specific post tag
+        tag: 'steepshot', // This tag is used to filter the results by a specific post tag
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByHot(query, function (err, result) {
         console.log(err, result)
-        /*result.forEach(element => {
-            ss.push(element.title)
-            ss.push(element.body)
-        });*/
-        res.send(result)
+        var ss = []
+        result.forEach(element => {
+            const obj = {
+                title: element.title, body: getImgUrl(element.body), url: element.url, pending_payout_value: element.pending_payout_value,
+                net_votes: element.net_votes
+            }
+            ss.push(obj)
+        });
 
+        res.send(ss)
     });
 }
 
