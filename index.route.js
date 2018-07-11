@@ -22,4 +22,27 @@ router.use('/auth', authRoutes);
 // mount home routes at /home
 router.use('/post', postRoutes);
 
+// ui tests
+
+// trending 
+router.get('/', (req, res) =>
+  res.sendfile(__dirname + '/public/trending.html')
+);
+
+// new posts
+router.get('/', (req, res) =>
+  res.sendfile(__dirname + '/public/new.html')
+);
+
+// hot posts
+router.get('/', (req, res) =>
+  res.sendfile(__dirname + '/public/hot.html')
+);
+
+// user posts
+router.get('/', (req, res) =>
+  res.sendfile(__dirname + '/public/userPosts.html')
+);
+
+
 module.exports = router;
