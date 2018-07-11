@@ -10,9 +10,11 @@
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
-                        $("#display").append("<p>" + index + ": " + JSON.stringify(element) + "</p>")
+                        $("#display").append("<p>" + element.title + "</p>")
                         if (element.body)
                             $("#display").append('<img height="100" width="100" src=' + element.body[0] + ' />')
+                        $("#display").append("<p>" + element.pending_payout_value + "</p>")
+                        $("#display").append("<p>" + element.net_votes + "</p>")
                     });
 
                 });
@@ -22,9 +24,11 @@
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
-                        $("#display").append("<p>" + index + ": " + JSON.stringify(element) + "</p>")
+                        $("#display").append("<p>" + element.title + "</p>")
                         if (element.body)
                             $("#display").append('<img height="100" width="100" src=' + element.body[0] + ' />')
+                        $("#display").append("<p>" + element.pending_payout_value + "</p>")
+                        $("#display").append("<p>" + element.net_votes + "</p>")
                     });
 
                 });
@@ -33,9 +37,11 @@
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
-                        $("#display").append("<p>" + index + ": " + JSON.stringify(element) + "</p>")
+                        $("#display").append("<p>" + element.title + "</p>")
                         if (element.body)
                             $("#display").append('<img height="100" width="100" src=' + element.body[0] + ' />')
+                        $("#display").append("<p>" + element.pending_payout_value + "</p>")
+                        $("#display").append("<p>" + element.net_votes + "</p>")
                     });
 
                 });
@@ -44,9 +50,11 @@
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
-                        $("#display").append("<p>" + index + ": " + JSON.stringify(element) + "</p>")
+                        $("#display").append("<p>" + element.title + "</p>")
                         if (element.body)
                             $("#display").append('<img height="100" width="100" src=' + element.body[0] + ' />')
+                        $("#display").append("<p>" + element.pending_payout_value + "</p>")
+                        $("#display").append("<p>" + element.net_votes + "</p>")
                     });
 
                 });
