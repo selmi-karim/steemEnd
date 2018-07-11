@@ -1,8 +1,8 @@
 {
-  "name": "express-mongoose-es6-rest-api",
-  "version": "5.0.0",
-  "description": "A Boilerplate application for building REST APIs using express, mongoose in ES6 with code coverage",
-  "author": "Kunal Kapadia <kunalkapadia12@gmail.com>",
+  "name": "steemend",
+  "version": "1.0.0",
+  "description": "Steemend",
+  "author": "kerim selmi <selmi.kerim@gmail.com>",
   "main": "index.js",
   "private": false,
   "engines": {
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "start:debug": "cross-env DEBUG=express-mongoose-es6-rest-api:* yarn start",
+    "start:debug": "cross-env DEBUG=steemend:* yarn start",
     "lint": "esw *.js server config --color",
     "lint:watch": "yarn lint -- --watch",
     "precommit": "yarn lint && yarn test",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:KunalKapadia/express-mongoose-es6-rest-api.git"
+    "url": "https://github.com/karimation/steemEnd.git"
   },
   "keywords": [
     "express",
