@@ -57,7 +57,7 @@ describe('## Posts APIs', () => {
   describe('# GET /api/post/username/USERNAME', () => {
     it('should get latest posts from specific user', (done) => {
       request(app)
-        .get(`/api/post/username/`+user.username)
+        .get(`/api/post/username/` + user.username)
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.length).to.not.equal(0);
@@ -67,11 +67,33 @@ describe('## Posts APIs', () => {
     });
 
   });
+
+});
+
+
+describe('## Posts APIs with 100 posts', () => {
+  let user = {
+    username: 'borepstein',
+  };
 
   describe('# GET /api/post/trending', () => {
     it('should get latest posts', (done) => {
       request(app)
-        .get(`/api/post/trending`)
+        .get(`/api/post/trending`, { size: 100 })
+        .expect(httpStatus.OK)
+        .then((res) => {
+          expect(res.length).to.not.equal(100);
+          done();
+        })
+        .catch(done);
+    });
+
+  });
+
+  describe('# GET /api/post/new', () => {
+    it('should get latest posts', (done) => {
+      request(app)
+        .get(`/api/post/new`, { size: 100 })
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.length).to.not.equal(0);
@@ -81,4 +103,33 @@ describe('## Posts APIs', () => {
     });
 
   });
+
+  describe('# GET /api/post/hot', () => {
+    it('should get hot posts', (done) => {
+      request(app)
+        .get(`/api/post/hot`, { size: 100 })
+        .expect(httpStatus.OK)
+        .then((res) => {
+          expect(res.length).to.not.equal(0);
+          done();
+        })
+        .catch(done);
+    });
+
+  });
+
+  describe('# GET /api/post/username/USERNAME', () => {
+    it('should get latest posts from specific user', (done) => {
+      request(app)
+        .get(`/api/post/username/` + user.username, { size: 100 })
+        .expect(httpStatus.OK)
+        .then((res) => {
+          expect(res.length).to.not.equal(0);
+          done();
+        })
+        .catch(done);
+    });
+
+  });
+
 });
