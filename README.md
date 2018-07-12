@@ -47,9 +47,7 @@ yarn test:check-coverage
 ## Code Coverage
 Get code coverage summary on executing yarn test 
 
-<p align="center"> 
 <img src="screenshots/unitests.gif"  >
-</p>
 
 
 # API
