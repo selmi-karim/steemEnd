@@ -26,7 +26,6 @@ Start server with nodemon (Auto server restart):
 
 ```
 nodemon
-
 ```
 
 Tests:
@@ -44,6 +43,13 @@ yarn test:watch
 # Run tests enforcing code coverage (configured via .istanbul.yml)
 yarn test:check-coverage
 ```
+
+## Code Coverage
+Get code coverage summary on executing yarn test 
+
+<p align="center"> 
+<img src="screenshots/unitests.gif"  >
+</p>
 
 
 # API
