@@ -6,6 +6,7 @@
     <script>
         $(document).ready(function () {
             $("#trending").click(function () {
+
                 $.get("http://localhost:4040/api/post/trending/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
@@ -15,6 +16,8 @@
                             $("#display").append('<img height="220" width="500" src=' + element.body[0] + ' />')
                         $("#display").append("<p>" + element.pending_payout_value + "</p>")
                         $("#display").append("<p>" + element.net_votes + " </p>")
+                        $("#display").append("<hr>")
+
                     });
 
                 });
@@ -29,8 +32,8 @@
                             $("#display").append('<img height="220" width="500" src=' + element.body[0] + ' />')
                         $("#display").append("<p>" + element.pending_payout_value + "</p>")
                         $("#display").append("<p>" + element.net_votes + "</p>")
+                        $("#display").append("<hr>")
                     });
-
                 });
             }); $("#hot").click(function () {
                 $.get("http://localhost:4040/api/post/hot/", function (data, status) {
@@ -42,11 +45,19 @@
                             $("#display").append('<img height="220" width="500" src=' + element.body[0] + ' />')
                         $("#display").append("<p>" + element.pending_payout_value + "</p>")
                         $("#display").append("<p>" + element.net_votes + "</p>")
+                        $("#display").append("<hr>")
                     });
 
                 });
             }); $("#userposts").click(function () {
-                $.get("http://localhost:4040/api/post/username/borepstein", function (data, status) {
+                var txt;
+                var person = prompt("Enter steem user name:", "borepstein");
+                if (person == null || person == "") {
+                    txt = "borepstein";
+                } else {
+                    txt = person;
+                }
+                $.get("http://localhost:4040/api/post/username/" + txt, function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -55,6 +66,7 @@
                             $("#display").append('<img height="220" width="500" src=' + element.body[0] + ' />')
                         $("#display").append("<p>" + element.pending_payout_value + "</p>")
                         $("#display").append("<p>" + element.net_votes + "</p>")
+                        $("#display").append("<hr>")
                     });
 
                 });
@@ -74,4 +86,3 @@
 </body>
 
 </html>
-
