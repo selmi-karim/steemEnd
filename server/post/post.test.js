@@ -23,7 +23,6 @@ describe('## Posts APIs', () => {
         })
         .catch(done);
     });
-
   });
 
   describe('# GET /api/post/new', () => {
