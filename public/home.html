@@ -70,7 +70,18 @@
                     });
 
                 });
+            }); $("#login").click(function () {
+                alert('login')
+                $.get("http://localhost:4040/api/auth/login/", function (data, status) {
+                    alert("Status: " + status);
+                    alert("data: " + JSON.stringify(data));
+                    window.location.replace(data);
+
+                });
             });
+
+            $("#connect").show();
+            $("#disconnect").show();
         });
     </script>
 </head>
@@ -81,7 +92,11 @@
     <button id="new">new</button>
     <button id="hot">hot</button>
     <button id="userposts">user posts</button>
+    <button id="login">login</button>
+    <button id="logout">logout</button>
     <div id="display"></div>
+    <h1 id="connect" style="display: none;">connect</h1>
+    <h1 id="disconnect" style="display: none;">disconnect</h1>
 
 </body>
 
