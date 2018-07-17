@@ -7,13 +7,14 @@ const config = require('../../config/config');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-/** POST /api/auth/login - Returns token if correct username and password is provided */
+/** Get /api/auth/login - Redirection to SteemConnect if no token (JWT) exist */
 router.route('/login')
-  .post(validate(paramValidation.login), authCtrl.login);
+  .get(authCtrl.login)
 
-/** GET /api/auth/random-number - Protected route,
+/** GET /api/auth/logout - Protected route,
  * needs token returned by the above as header. Authorization: Bearer {token} */
-router.route('/random-number')
-  .get(expressJwt({ secret: config.jwtSecret }), authCtrl.getRandomNumber);
+router.route('/logout')
+  .get(expressJwt({ secret: config.jwtSecret }), authCtrl.logout);
 
 module.exports = router;
+

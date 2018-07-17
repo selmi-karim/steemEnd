@@ -2,49 +2,66 @@ const jwt = require('jsonwebtoken');
 const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 const config = require('../../config/config');
-
-// sample user, used for authentication
-const user = {
-  username: 'react',
-  password: 'express'
-};
+const  sc2 = require('sc2-sdk');
 
 /**
- * Returns jwt token if valid username and password is provided
+ * SteemConnect Config
+ */
+let steem = sc2.Initialize({
+  app: process.env.APP_ID,
+  callbackURL: process.env.REDIRECT_URI,
+  scope: ["login"]
+});
+
+/**
+ * Returns jwt token if sc2 validation
  * @param req
  * @param res
  * @param next
  * @returns {*}
  */
 function login(req, res, next) {
-  // Ideally you'll fetch this from the db
-  // Idea here was to show how jwt works with simplicity
-  if (req.body.username === user.username && req.body.password === user.password) {
+  console.log('')
+  if (!req.query.access_token) {
+    let uri = steem.getLoginURL();
+    console.log('--------->'+uri)
+    res.json(uri);
+  } else {
+    steem.setAccessToken(req.query.access_token);
+    
+    console.log('*********'+JSON.stringify(req.query))
+    res.redirect('http://localhost:4040/api/')
+    
+    
     const token = jwt.sign({
-      username: user.username
+      username: req.query.username
     }, config.jwtSecret);
     return res.json({
       token,
-      username: user.username
+      username: req.query.username
     });
   }
 
-  const err = new APIError('Authentication error', httpStatus.UNAUTHORIZED, true);
-  return next(err);
+  /*const err = new APIError('Authentication error', httpStatus.UNAUTHORIZED, true);
+  return next(err);*/
 }
+
 
 /**
- * This is a protected route. Will return random number only if jwt token is provided in header.
+ * destroy jwt token
  * @param req
  * @param res
+ * @param next
  * @returns {*}
  */
-function getRandomNumber(req, res) {
-  // req.user is assigned by jwt middleware if valid token is provided
-  return res.json({
-    user: req.user,
-    num: Math.random() * 100
-  });
+function logout(req, res) {
+  // destroy jwt token
+  steem.revokeToken();
+  /*
+  const err = new APIError('Authentication error', httpStatus.UNAUTHORIZED, true);
+  return next(err);*/
 }
 
-module.exports = { login, getRandomNumber };
+
+
+module.exports = { login,logout };
