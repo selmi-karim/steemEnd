@@ -28,11 +28,7 @@ function login(req, res, next) {
     res.json(uri);
   } else {
     steem.setAccessToken(req.query.access_token);
-    
     console.log('*********'+JSON.stringify(req.query))
-    res.redirect('http://localhost:4040/api/')
-    
-    
     const token = jwt.sign({
       username: req.query.username
     }, config.jwtSecret);
