@@ -26,7 +26,7 @@ router.use('/post', postRoutes);
 
 // trending 
 router.get('/', (req, res) =>
-  res.sendfile(__dirname + '/public/home.html')
+  res.sendfile(__dirname +  '/public/home.html')
 );
 
 module.exports = router;
