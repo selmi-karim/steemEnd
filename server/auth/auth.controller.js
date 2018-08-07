@@ -7,8 +7,9 @@ const  sc2 = require('sc2-sdk');
 /**
  * SteemConnect Config
  */
+
 let steem = sc2.Initialize({
-  app: process.env.APP_ID,
+  app: process.env.APP_NAME,
   callbackURL: process.env.REDIRECT_URI,
   scope: ["login"]
 });
