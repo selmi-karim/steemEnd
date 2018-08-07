@@ -28,7 +28,6 @@ function getUserPosts(req, res) {
             element.body = getImgUrl(element.body)
             newObject.push(element)
         });
-
         res.send(newObject)
     });
 }
@@ -70,7 +69,6 @@ function getTrending(req, res) {
         limit: size, // This limit allows us to limit the overall results returned to 5
     };
     steem.api.getDiscussionsByTrending(query, function (err, result) {
-        //console.log(err, result)
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)

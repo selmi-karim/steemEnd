@@ -7,7 +7,7 @@
         $(document).ready(function () {
             $("#trending").click(function () {
 
-                $.get("https://steemend.herokuapp.com/api/post/trending/", function (data, status) {
+                $.get("http://localhost:4040/api/post/trending/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -15,7 +15,7 @@
                         if (element.body)
                             $("#display").append('<img height="220" width="500" src=' + element.body[0] + ' />')
                         $("#display").append("<p>" + element.pending_payout_value + "</p>")
-                        $("#display").append("<p>" + element.net_votes + " </p>")
+                        $("#display").append("<p> votes: " + element.net_votes + "</p>")
                         $("#display").append("<hr>")
 
                     });
@@ -23,7 +23,7 @@
                 });
             });
             $("#new").click(function () {
-                $.get("https://steemend.herokuapp.com/api/post/new/", function (data, status) {
+                $.get("http://localhost:4040/api/post/new/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -31,12 +31,12 @@
                         if (element.body)
                             $("#display").append('<img height="220" width="500" src=' + element.body[0] + ' />')
                         $("#display").append("<p>" + element.pending_payout_value + "</p>")
-                        $("#display").append("<p>" + element.net_votes + "</p>")
+                        $("#display").append("<p> votes: " + element.net_votes + "</p>")
                         $("#display").append("<hr>")
                     });
                 });
             }); $("#hot").click(function () {
-                $.get("https://steemend.herokuapp.com/api/post/hot/", function (data, status) {
+                $.get("http://localhost:4040/api/post/hot/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -44,7 +44,7 @@
                         if (element.body)
                             $("#display").append('<img height="220" width="500" src=' + element.body[0] + ' />')
                         $("#display").append("<p>" + element.pending_payout_value + "</p>")
-                        $("#display").append("<p>" + element.net_votes + "</p>")
+                        $("#display").append("<p> votes: " + element.net_votes + "</p>")
                         $("#display").append("<hr>")
                     });
 
@@ -57,7 +57,7 @@
                 } else {
                     txt = person;
                 }
-                $.get("https://steemend.herokuapp.com/api/post/username/" + txt, function (data, status) {
+                $.get("http://localhost:4040/api/post/username/" + txt, function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -65,14 +65,14 @@
                         if (element.body)
                             $("#display").append('<img height="220" width="500" src=' + element.body[0] + ' />')
                         $("#display").append("<p>" + element.pending_payout_value + "</p>")
-                        $("#display").append("<p>" + element.net_votes + "</p>")
+                        $("#display").append("<p> votes: " + element.net_votes + "</p>")
                         $("#display").append("<hr>")
                     });
 
                 });
             }); $("#login").click(function () {
                 alert('login')
-                $.get("https://steemend.herokuapp.com/api/auth/login/", function (data, status) {
+                $.get("http://localhost:4040/api/auth/login/", function (data, status) {
                     alert("Status: " + status);
                     alert("data: " + JSON.stringify(data));
                     window.location.replace(data);
@@ -80,21 +80,18 @@
                 });
             });
 
-            $("#connect").show();
-            $("#disconnect").show();
         });
     </script>
 </head>
 
 <body>
-
     <button id="trending">Trending</button>
     <button id="new">new</button>
     <button id="hot">hot</button>
     <button id="userposts">user posts</button>
     <button id="login">login</button>
     <button id="logout">logout</button>
-    
+    <div id="display"></div>
 
 </body>
 
