@@ -7,7 +7,7 @@
         $(document).ready(function () {
             $("#trending").click(function () {
 
-                $.get("http://localhost:4040/api/post/trending/", function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/post/trending/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -23,7 +23,7 @@
                 });
             });
             $("#new").click(function () {
-                $.get("http://localhost:4040/api/post/new/", function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/post/new/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -36,7 +36,7 @@
                     });
                 });
             }); $("#hot").click(function () {
-                $.get("http://localhost:4040/api/post/hot/", function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/post/hot/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -57,7 +57,7 @@
                 } else {
                     txt = person;
                 }
-                $.get("http://localhost:4040/api/post/username/" + txt, function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/post/username/" + txt, function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -72,7 +72,7 @@
                 });
             }); $("#login").click(function () {
                 alert('login')
-                $.get("http://localhost:4040/api/auth/login/", function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/auth/login/", function (data, status) {
                     alert("Status: " + status);
                     alert("data: " + JSON.stringify(data));
                     window.location.replace(data);
@@ -94,9 +94,7 @@
     <button id="userposts">user posts</button>
     <button id="login">login</button>
     <button id="logout">logout</button>
-    <div id="display"></div>
-    <h1 id="connect" style="display: none;">connect</h1>
-    <h1 id="disconnect" style="display: none;">disconnect</h1>
+    
 
 </body>
 
