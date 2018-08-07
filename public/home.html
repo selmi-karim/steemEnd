@@ -7,7 +7,7 @@
         $(document).ready(function () {
             $("#trending").click(function () {
 
-                $.get("http://localhost:4040/api/post/trending/", function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/post/trending/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -23,7 +23,7 @@
                 });
             });
             $("#new").click(function () {
-                $.get("http://localhost:4040/api/post/new/", function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/post/new/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -36,7 +36,7 @@
                     });
                 });
             }); $("#hot").click(function () {
-                $.get("http://localhost:4040/api/post/hot/", function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/post/hot/", function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -57,7 +57,7 @@
                 } else {
                     txt = person;
                 }
-                $.get("http://localhost:4040/api/post/username/" + txt, function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/post/username/" + txt, function (data, status) {
                     alert("Status: " + status);
                     $('#display').empty()
                     data.forEach((element, index) => {
@@ -72,7 +72,7 @@
                 });
             }); $("#login").click(function () {
                 alert('login')
-                $.get("http://localhost:4040/api/auth/login/", function (data, status) {
+                $.get("https://steemend.herokuapp.com/api/auth/login/", function (data, status) {
                     alert("Status: " + status);
                     alert("data: " + JSON.stringify(data));
                     window.location.replace(data);
