@@ -11,7 +11,7 @@ function getUserProfil(req, res) {
 
   steem.api.getAccounts([username], function (err, result) {
     //console.log(err, result);
-    res.send(result)
+    res.send(JSON.parse(result[0].json_metadata))
   });
 }
 
@@ -26,7 +26,7 @@ function getImgProfil(req, res) {
 
   steem.api.getAccounts([username], function (err, result) {
     // extract user data
-    res.send(JSON.parse(result[0].json_metadata))
+    res.send(JSON.parse(result[0].json_metadata.profile.profile_image))
   });
 }
 
