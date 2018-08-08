@@ -1,80 +1,71 @@
-const User = require('./user.model');
+const steem = require('steem')
 
 /**
- * Load user and append to req.
+ * Get Latest posts of specific user.
+ * @property {number} req.query.size - Number of posts.
+ * @returns {Posts[]}
  */
-function load(req, res, next, id) {
-  User.get(id)
-    .then((user) => {
-      req.user = user; // eslint-disable-line no-param-reassign
-      return next();
-    })
-    .catch(e => next(e));
-}
+function getUserProfil(req, res) {
+  const { username } = req.params
 
-/**
- * Get user
- * @returns {User}
- */
-function get(req, res) {
-  return res.json(req.user);
-}
-
-/**
- * Create new user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
- * @returns {User}
- */
-function create(req, res, next) {
-  const user = new User({
-    username: req.body.username,
-    mobileNumber: req.body.mobileNumber
+  const query = {
+      tag: username, // This tag is used to filter the results by a specific post tag
+      limit: size, // This limit allows us to limit the overall results returned to 5
+  };
+  steem.api.steem.api.getAccounts(['ned', 'dan'], function(err, result) {
+      //console.log(err, result);
+      console.log('user info: '+result)
+      res.send(result)
   });
-
-  user.save()
-    .then(savedUser => res.json(savedUser))
-    .catch(e => next(e));
 }
+
 
 /**
- * Update existing user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
- * @returns {User}
+ * Get Latest posts of specific user.
+ * @property {number} req.query.size - Number of posts.
+ * @returns {Posts[]}
  */
-function update(req, res, next) {
-  const user = req.user;
-  user.username = req.body.username;
-  user.mobileNumber = req.body.mobileNumber;
+function unfollowUser(req, res) {
+  const { username } = req.params
 
-  user.save()
-    .then(savedUser => res.json(savedUser))
-    .catch(e => next(e));
+  const query = {
+      tag: username, // This tag is used to filter the results by a specific post tag
+      limit: size, // This limit allows us to limit the overall results returned to 5
+  };
+  steem.api.getDiscussionsByBlog(query, function (err, result) {
+      var newObject = []
+      result.forEach(element => {
+          element.body = getImgUrl(element.body)
+          newObject.push(element)
+      });
+      res.send(newObject)
+  });
 }
+
 
 /**
- * Get user list.
- * @property {number} req.query.skip - Number of users to be skipped.
- * @property {number} req.query.limit - Limit number of users to be returned.
- * @returns {User[]}
+ * Get Latest posts of specific user.
+ * @property {number} req.query.size - Number of posts.
+ * @returns {Posts[]}
  */
-function list(req, res, next) {
-  const { limit = 50, skip = 0 } = req.query;
-  User.list({ limit, skip })
-    .then(users => res.json(users))
-    .catch(e => next(e));
+function followUser(req, res) {
+  const { username } = req.params
+
+  const query = {
+      tag: username, // This tag is used to filter the results by a specific post tag
+      limit: size, // This limit allows us to limit the overall results returned to 5
+  };
+  steem.api.getDiscussionsByBlog(query, function (err, result) {
+      var newObject = []
+      result.forEach(element => {
+          element.body = getImgUrl(element.body)
+          newObject.push(element)
+      });
+      res.send(newObject)
+  });
 }
 
-/**
- * Delete user.
- * @returns {User}
- */
-function remove(req, res, next) {
-  const user = req.user;
-  user.remove()
-    .then(deletedUser => res.json(deletedUser))
-    .catch(e => next(e));
-}
 
-module.exports = { load, get, create, update, list, remove };
+
+
+module.exports = { getUserProfil, followUser, unfollowUser };
