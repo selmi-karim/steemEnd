@@ -7,7 +7,7 @@ router.route('/profil/:username')
   /** GET /api/users - Get user profil */
   .get(userCtrl.getUserProfil)
 
-router.route('/imgprofil/:username')
+router.route('/imgprofile/:username')
   /** GET /api/users - Get user profil */
   .get(userCtrl.getImgProfil)
 
