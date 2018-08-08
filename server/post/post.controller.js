@@ -26,7 +26,8 @@ function getUserPosts(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            newObject.push(element)
+            if (element.body)
+                newObject.push(element)
         });
         res.send(newObject)
     });
@@ -48,6 +49,7 @@ function getNew(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
+            console.log('user: '+element.body)
             newObject.push(element)
         });
 
