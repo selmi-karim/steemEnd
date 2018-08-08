@@ -25,9 +25,8 @@ function getImgProfil(req, res) {
   console.log('username: ' + username)
 
   steem.api.getAccounts([username], function (err, result) {
-    //console.log(err, result);
-    console.log('user info: ' + result)
-    res.send(result.profile_image)
+    // extract user data
+    res.send(JSON.parse(result[0].json_metadata))
   });
 }
 
