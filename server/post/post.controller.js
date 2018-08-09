@@ -102,7 +102,6 @@ function getHot(req, res) {
             if (element.body === null)
                 newObject.push(element)
         });
-
         res.send(newObject)
     });
 }
