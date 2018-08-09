@@ -26,7 +26,7 @@ function getUserPosts(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            if (element.body === null)
+            if (element.body !== null)
                 newObject.push(element)
         });
         res.send(newObject)
@@ -49,7 +49,7 @@ function getNew(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            if (element.body === null)
+            if (element.body !== null)
                 newObject.push(element)
         });
 
@@ -99,7 +99,7 @@ function getHot(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            if (element.body === null)
+            if (element.body !== null)
                 newObject.push(element)
         });
         res.send(newObject)
