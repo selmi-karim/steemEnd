@@ -75,7 +75,7 @@ function getTrending(req, res) {
         result.forEach(element => {
 
             element.body = getImgUrl(element.body)
-            if (element.body === null)
+            if (element.body !== null)
                 newObject.push(element)
         });
 
