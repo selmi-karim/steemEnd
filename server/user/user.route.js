@@ -3,7 +3,7 @@ const userCtrl = require('./user.controller');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-router.route('/profil/:username')
+router.route('/profile/:username')
   /** GET /api/users - Get user profil */
   .get(userCtrl.getUserProfil)
 

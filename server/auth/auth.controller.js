@@ -22,14 +22,11 @@ let steem = sc2.Initialize({
  * @returns {*}
  */
 function login(req, res, next) {
-  console.log('')
   if (!req.query.access_token) {
     let uri = steem.getLoginURL();
-    console.log('--------->'+uri)
     res.json(uri);
   } else {
     steem.setAccessToken(req.query.access_token);
-    console.log('*********'+JSON.stringify(req.query))
     const token = jwt.sign({
       username: req.query.username
     }, config.jwtSecret);
