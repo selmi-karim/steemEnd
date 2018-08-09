@@ -26,7 +26,7 @@ function getUserPosts(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            if (element.body)
+            if (element.body === null)
                 newObject.push(element)
         });
         res.send(newObject)
@@ -49,8 +49,8 @@ function getNew(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            console.log('user: '+element.body)
-            newObject.push(element)
+            if (element.body === null)
+                newObject.push(element)
         });
 
         res.send(newObject)
@@ -73,8 +73,10 @@ function getTrending(req, res) {
     steem.api.getDiscussionsByTrending(query, function (err, result) {
         var newObject = []
         result.forEach(element => {
+
             element.body = getImgUrl(element.body)
-            newObject.push(element)
+            if (element.body === null)
+                newObject.push(element)
         });
 
         res.send(newObject)
@@ -97,7 +99,8 @@ function getHot(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            newObject.push(element)
+            if (element.body === null)
+                newObject.push(element)
         });
 
         res.send(newObject)
