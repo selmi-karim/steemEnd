@@ -11,6 +11,9 @@ function getUserProfil(req, res) {
   steem.api.getAccounts([username], function (err, result) {
     //console.log(err, result);
     const metadata = Object.values(JSON.parse(result[0].json_metadata))[0]
+    metadata['post_count'] = result[0].post_count
+    metadata['can_vote'] = result[0].can_vote
+    metadata['voting_power'] = result[0].voting_power
     res.send(metadata)
   });
 }
