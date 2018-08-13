@@ -3,7 +3,6 @@ const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 const config = require('../../config/config');
 const  sc2 = require('sc2-sdk');
-
 /**
  * SteemConnect Config
  */
