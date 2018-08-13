@@ -8,15 +8,11 @@ function getUserProfil(req, res) {
   const { username } = req.params
   console.log('username: ' + username)
 
-  /*steem.api.getAccounts([username], function (err, result) {
+  steem.api.getAccounts([username], function (err, result) {
     //console.log(err, result);
     //res.send(JSON.parse(result[0].json_metadata))
     res.send(result)
-  });*/
-  steem.api.getRecoveryRequest(username, function (err, result) {
-    console.log(err, result);
-    res.send(result)
-  });
+  });  
 }
 
 
