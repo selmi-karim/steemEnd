@@ -10,9 +10,9 @@ function getUserProfil(req, res) {
 
   steem.api.getAccounts([username], function (err, result) {
     //console.log(err, result);
-    //res.send(JSON.parse(result[0].json_metadata))
-    res.send(result)
-  });  
+    const metadata = Object.values(JSON.parse(result[0].json_metadata))[0]
+    res.send(metadata)
+  });
 }
 
 
@@ -84,7 +84,7 @@ function followUser(req, res) {
  */
 function getFollowCount(req, res) {
   const { username } = req.params
-  steem.api.getFollowCountAsync(username,function(err, result) {
+  steem.api.getFollowCountAsync(username, function (err, result) {
     res.send(result)
   });
 }
