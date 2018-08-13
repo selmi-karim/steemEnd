@@ -1,5 +1,16 @@
 const steem = require('steem')
 
+
+
+/**
+ * private function to extract img from text
+ */
+function getImgUrl(text) {
+  const regex = /(https?:\/\/steepshot.org\/api\/[^\s]+)/g;
+  return text.replace(')', ' ').match(regex)
+}
+
+
 /**
  * Get User profil.
  * @returns {User[]}
@@ -92,5 +103,27 @@ function getFollowCount(req, res) {
   });
 }
 
+/**
+ * Get User Articles.
+ * @property {number} req.query.size - number of followers.
+ * @returns {Article[]}
+ */
+function getUserArticles(req, res) {
+  const { size = 10 } = req.query  // by default 10 posts
+  const { username } = req.params
+  const query = {
+    tag: username, // This tag is used to filter the results by a specific post tag
+    limit: size, // This limit allows us to limit the overall results returned to 5
+  };
+  steem.api.getDiscussionsByBlog(query, function (err, result) {
+    var newObject = []
+    result.forEach(element => {
+      element.body = getImgUrl(element.body)
+      if (element.body !== null)
+        newObject.push(element)
+    });
+    res.send(newObject)
+  });
+}
 
-module.exports = { getUserProfil, getImgProfil, followUser, unfollowUser, getFollowCount };
+module.exports = { getUserProfil, getImgProfil, followUser, unfollowUser, getFollowCount, getUserArticles };
