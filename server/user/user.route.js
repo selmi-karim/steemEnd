@@ -19,5 +19,9 @@ router.route('/unfollow/:username')
   /** GET /api/users - Get list of users */
   .get(userCtrl.unfollowUser)
 
+router.route('/getFollowCount/:username')
+  /** GET /api/users - Get list of users */
+  .get(userCtrl.getFollowCount)
+
 
 module.exports = router;

@@ -1,23 +1,27 @@
 const steem = require('steem')
 
 /**
- * Get Latest posts of specific user.
- * @property {number} req.query.size - Number of posts.
- * @returns {Posts[]}
+ * Get User profil.
+ * @returns {User[]}
  */
 function getUserProfil(req, res) {
   const { username } = req.params
   console.log('username: ' + username)
 
-  steem.api.getAccounts([username], function (err, result) {
+  /*steem.api.getAccounts([username], function (err, result) {
     //console.log(err, result);
-    res.send(JSON.parse(result[0].json_metadata))
+    //res.send(JSON.parse(result[0].json_metadata))
+    res.send(result)
+  });*/
+  steem.api.getRecoveryRequest(username, function (err, result) {
+    console.log(err, result);
+    res.send(result)
   });
 }
 
 
 /**
- * Get user profil photo.
+ * Get user image profil.
  * @returns {URL}
  */
 function getImgProfil(req, res) {
@@ -25,16 +29,15 @@ function getImgProfil(req, res) {
   console.log('username: ' + username)
   steem.api.getAccounts([username], function (err, result) {
     // extract user data
-    console.log('data :'+result[0].json_metadata)
+    console.log('data :' + result[0].json_metadata)
     res.setHeader('Content-Type', 'application/json');
-    res.send({image: JSON.parse(result[0].json_metadata).profile.profile_image})
+    res.send({ image: JSON.parse(result[0].json_metadata).profile.profile_image })
   });
 }
 
 
 /**
  * Get Latest posts of specific user.
- * @property {number} req.query.size - Number of posts.
  * @returns {Posts[]}
  */
 function unfollowUser(req, res) {
@@ -78,6 +81,17 @@ function followUser(req, res) {
 }
 
 
+/**
+ * Get followers of specific user.
+ * @property {number} req.query.size - number of followers.
+ * @returns {Users[]}
+ */
+function getFollowCount(req, res) {
+  const { username } = req.params
+  steem.api.getFollowCountAsync(username,function(err, result) {
+    res.send(result)
+  });
+}
 
 
-module.exports = { getUserProfil, getImgProfil, followUser, unfollowUser };
+module.exports = { getUserProfil, getImgProfil, followUser, unfollowUser, getFollowCount };
