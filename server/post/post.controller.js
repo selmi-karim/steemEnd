@@ -15,7 +15,7 @@ function getImgUrl(text) {
  * @returns {Posts[]}
  */
 function getUserPosts(req, res) {
-    const { size = 20 } = req.query  // by default 10 posts
+    const { size = 10 } = req.query  // by default 10 posts
     const { username } = req.params
 
     const query = {
