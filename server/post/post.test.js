@@ -7,7 +7,7 @@ const app = require('../../index');
 chai.config.includeStack = true;
 
 
-describe('## Posts APIs', () => {
+describe('## GET APIs', () => {
   let user = {
     username: 'borepstein',
   };
