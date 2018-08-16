@@ -111,14 +111,23 @@ function getFollowCount(req, res) {
 function getUserPosts(req, res) {
   const { size = 10 } = req.query  // by default 10 posts
   const { username } = req.params
-  
-  steem.api.getDiscussionsByAuthorBeforeDate(username,null,'2100-01-01T00:00:00', size, function (err, result) {
+
+  steem.api.getDiscussionsByAuthorBeforeDate(username, null, '2100-01-01T00:00:00', size, function (err, result) {
     var newObject = []
     result.forEach(element => {
       console.log('-------------')
       element.body = getImgUrl(element.body)
+      var newData = {};
+      newData['title'] = element.title
       if (element.body !== null)
-        newObject.push(element)
+        newData['source'] = { 'uri': element.body[0] }
+      newData['id'] = element.id
+
+      newData['category'] = element.category
+      newData['net_votes'] = element.net_votes
+
+      if (element.body !== null)
+        newObject.push(newData)
     });
     res.send(newObject)
   });
