@@ -108,7 +108,7 @@ function getFollowCount(req, res) {
  * @property {number} req.query.size - number of followers.
  * @returns {Article[]}
  */
-function getUserArticles(req, res) {
+function getUserPosts(req, res) {
   const { size = 100 } = req.query  // by default 10 posts
   const { username } = req.params
   const query = {
@@ -127,4 +127,4 @@ function getUserArticles(req, res) {
   });
 }
 
-module.exports = { getUserProfil, getImgProfil, followUser, unfollowUser, getFollowCount, getUserArticles };
+module.exports = { getUserProfil, getImgProfil, followUser, unfollowUser, getFollowCount, getUserPosts };

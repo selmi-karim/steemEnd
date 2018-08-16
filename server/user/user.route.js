@@ -23,8 +23,8 @@ router.route('/getFollowCount/:username')
   /** GET /api/users - Get list of users */
   .get(userCtrl.getFollowCount)
 
-router.route('/getUserArticles/:username')
+router.route('/getUserPosts/:username')
   /** GET /api/users - Get list of users */
-  .get(userCtrl.getUserArticles)
+  .get(userCtrl.getUserPosts)
 
 module.exports = router;
