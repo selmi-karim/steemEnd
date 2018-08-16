@@ -109,12 +109,9 @@ function getFollowCount(req, res) {
  * @returns {Article[]}
  */
 function getUserPosts(req, res) {
-  const { size = 100 } = req.query  // by default 10 posts
+  const { size = 10 } = req.query  // by default 10 posts
   const { username } = req.params
-  const query = {
-    tag: username, // This tag is used to filter the results by a specific post tag
-    limit: size, // This limit allows us to limit the overall results returned to 5
-  };
+  
   steem.api.getDiscussionsByAuthorBeforeDate(username,null,'2100-01-01T00:00:00', size, function (err, result) {
     var newObject = []
     result.forEach(element => {
