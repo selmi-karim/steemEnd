@@ -113,7 +113,7 @@ function getUserPosts(req, res) {
   const { username } = req.params
 
   steem.api.getDiscussionsByAuthorBeforeDate(username, null, '2100-01-01T00:00:00', size, function (err, result) {
-    var newObject = []
+    var filter = []
     result.forEach(element => {
       console.log('-------------')
       element.body = getImgUrl(element.body)
@@ -125,11 +125,11 @@ function getUserPosts(req, res) {
 
       newData['category'] = element.category
       newData['net_votes'] = element.net_votes
-
+      newData['pending_payout_value'] = element.pending_payout_value
       if (element.body !== null)
-        newObject.push(newData)
+      filter.push(newData)
     });
-    res.send(newObject)
+    res.send(filter)
   });
 }
 
