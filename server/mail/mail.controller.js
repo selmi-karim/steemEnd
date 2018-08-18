@@ -33,7 +33,7 @@ function replyMail(req, res, next) {
             }
             console.log('Message sent: %s', info.messageId);
             //res.send({ status: 'success', 'info': info.messageId })
-            res.send(200);
+            res.send({status:'success'});
         });
     });
 }
