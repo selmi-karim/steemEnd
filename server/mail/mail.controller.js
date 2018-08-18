@@ -12,7 +12,7 @@ function replyMail(req, res, next) {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.USER, // generated ethereal user
+                user: process.env.UMAIL, // generated ethereal user
                 pass: process.env.PASSWORD // generated ethereal password
             }
         });
