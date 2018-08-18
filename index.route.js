@@ -2,6 +2,7 @@ const express = require('express');
 const userRoutes = require('./server/user/user.route');
 const authRoutes = require('./server/auth/auth.route');
 const postRoutes = require('./server/post/post.route');
+const mailRoutes = require('./server/mail/mail.route');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -19,8 +20,13 @@ router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
 
 
-// mount home routes at /home
+// mount posts routes at /post
 router.use('/post', postRoutes);
+
+
+
+// mount mail routes at /mail
+router.use('/mail', mailRoutes);
 
 // ui tests
 
