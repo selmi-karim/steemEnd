@@ -16,7 +16,7 @@
     "start:debug": "cross-env DEBUG=steemend:* yarn start",
     "lint": "esw *.js server config --color",
     "lint:watch": "yarn lint -- --watch",
-    "test": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --ui bdd --reporter spec --colors server --recursive",
+    "test": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --ui bdd --reporter spec --colors server --recursive --timeout 20000",
     "test:watch": "yarn test -- --watch",
     "test:coverage": "cross-env NODE_ENV=test ./node_modules/.bin/istanbul cover _mocha -- --ui bdd --reporter spec --colors server --recursive",
     "test:check-coverage": "yarn test:coverage && istanbul check-coverage",
