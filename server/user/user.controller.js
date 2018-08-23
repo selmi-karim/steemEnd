@@ -34,15 +34,9 @@ function getUserProfil(req, res) {
  * Get user image profil.
  * @returns {URL}
  */
-function getImgProfil(req, res) {
+function getImgProfile(req, res) {
   const { username } = req.params
-  console.log('username: ' + username)
-  steem.api.getAccounts([username], function (err, result) {
-    // extract user data
-    console.log('data :' + result[0].json_metadata)
-    res.setHeader('Content-Type', 'application/json');
-    res.send({ image: JSON.parse(result[0].json_metadata).profile.profile_image })
-  });
+    res.send({ image: 'https://steemitimages.com/u/'+username+'/avatar' })
 }
 
 
@@ -108,6 +102,7 @@ function getFollowCount(req, res) {
  * @property {number} req.query.size - number of followers.
  * @returns {Article[]}
  */
+
 function getUserPosts(req, res) {
   const { size = 10 } = req.query  // by default 10 posts
   const { username } = req.params
@@ -115,7 +110,7 @@ function getUserPosts(req, res) {
   steem.api.getDiscussionsByAuthorBeforeDate(username, null, '2100-01-01T00:00:00', size, function (err, result) {
     var filter = []
     result.forEach(element => {
-      console.log('-------------')
+      //console.log('-------------')
       element.body = getImgUrl(element.body)
       var newData = {};
       newData['title'] = element.title
@@ -133,4 +128,4 @@ function getUserPosts(req, res) {
   });
 }
 
-module.exports = { getUserProfil, getImgProfil, followUser, unfollowUser, getFollowCount, getUserPosts };
+module.exports = { getUserProfil, getImgProfile, followUser, unfollowUser, getFollowCount, getUserPosts };

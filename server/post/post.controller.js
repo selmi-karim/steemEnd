@@ -73,12 +73,10 @@ function getTrending(req, res) {
     steem.api.getDiscussionsByTrending(query, function (err, result) {
         var newObject = []
         result.forEach(element => {
-
             element.body = getImgUrl(element.body)
             if (element.body !== null)
                 newObject.push(element)
         });
-
         res.send(newObject)
     });
 }

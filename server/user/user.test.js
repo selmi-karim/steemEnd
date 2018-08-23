@@ -5,18 +5,14 @@ const expect = chai.expect;
 const app = require('../../index');
 
 chai.config.includeStack = true;
-module.exports = { getUserProfil, getImgProfil, followUser, unfollowUser, getFollowCount, getUserPosts };
 
 
-describe('## GET APIs', () => {
-    let user = {
-        username: 'borepstein',
-    };
-
+describe('## GET USER APIs', () => {
+    let username = 'borepstein'
     describe('# GET /api/users/getUserProfil', () => {
         it('should get user profile', (done) => {
             request(app)
-                .get(`/api/users/getUserProfil/${username}`)
+                .get(`/api/users/getUserPosts/${username}`)
                 .expect(httpStatus.OK)
                 .then((res) => {
                     expect(res.length).to.not.equal(0);
@@ -29,7 +25,7 @@ describe('## GET APIs', () => {
     describe('# GET /api/users/getImgProfil', () => {
         it('should get user image profil', (done) => {
             request(app)
-                .get(`/api/users/getImgProfil/${username}`)
+                .get(`/api/users/imgprofile/${username}`)
                 .expect(httpStatus.OK)
                 .then((res) => {
                     expect(res.length).to.not.equal(0);
@@ -51,18 +47,4 @@ describe('## GET APIs', () => {
                 .catch(done);
         });
     });
-
-    describe('# GET /api/users/getUserPosts', () => {
-        it('should get user posts', (done) => {
-            request(app)
-                .get(`/api/users/getUserPosts/${username}`)
-                .expect(httpStatus.OK)
-                .then((res) => {
-                    expect(res.length).to.not.equal(0);
-                    done();
-                })
-                .catch(done);
-        });
-    });
-
 });
