@@ -22,7 +22,7 @@ function getUserProfil(req, res) {
   steem.api.getAccounts([username], function (err, result) {
     console.log(err, result)
     let metadata = {"about": "","location": "","profile_image": "","cover_image": ""}
-    if (result[0].json_metadata != '{}')
+    if (result[0].json_metadata != '{}' && result[0].json_metadata != '')
       metadata = Object.values(JSON.parse(result[0].json_metadata))[0]
     metadata['post_count'] = result[0].post_count
     metadata['can_vote'] = result[0].can_vote
