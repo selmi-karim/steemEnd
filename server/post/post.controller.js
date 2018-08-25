@@ -23,15 +23,6 @@ function getImgUrl(text) {
 }
 
 
-function permalink() {
-    let string = ''
-    let allowedChars = "abcdefghijklmnopqrstuvwxyz0123456789";
-    for (var i = 0; i < 32; i++) {
-        string += allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
-    }
-    return string;
-}
-
 /**
  * Get Latest posts of specific user.
  * @property {number} req.query.size - Number of posts.
@@ -155,30 +146,21 @@ function getHot(req, res) {
  * @returns {Posts[]}
  */
 function addPost(req, res) {
-    /*var tags = req.body.tags.split(',').map(item => item.trim());
-    let primaryTag = tags[0] || 'photography'
-    let otherTags = tags.slice(1)
-    
-    let { username, access_token } = req.user
-    const { author, permlink, tags, primaryTag, title, body, customData } = req.query
-    let author = req.session.steemconnect.name
-    let permlink = util.urlString()
-    let title = req.body.title
-    let body = req.body.post*/
+    const { title, body,tags } = req.query
+    //console.log('tags:')
     let customData = {
-        tags: ['js','code','react'],
+        tags: tags,
         app: 'steemitgram'
     }
-    steemconnect.comment('', 'steemitgram', 'latech', permalink(), 'It works on my machine.',
-     'https://res.cloudinary.com/teepublic/image/private/s--qdBkljDY--/t_Preview/b_rgb:ffffff,c_limit,f_jpg,h_630,q_90,w_630/v1516825854/production/designs/2305863_0.jpg',
+    steemconnect.setAccessToken(req.user.access_token)
+    steemconnect.comment('', 'steemitgram', req.user.username,title.a.replace(/ /g, '-'), title,body,
     customData, (err, steemResponse) => {
         if (err) {
             res.send(err)
         } else {
-            res.send('Posted To Steem Network')
+            res.send(steemResponse)
         }
     });
-    //res.send(req.user)
 }
 
 module.exports = { getUserPosts, getNew, getHot, getTrending, addPost }
