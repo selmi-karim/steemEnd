@@ -1,5 +1,7 @@
 const express = require('express');
 const homeCtrl = require('./post.controller');
+const expressJwt = require('express-jwt');
+const config = require('../../config/config');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -22,4 +24,7 @@ router.route('/hot')
     /** GET /api/home/:userId - Get latest posts liked by specific user */
     .get(homeCtrl.getHot)
 
+
+router.route('/addPost')
+    .get(expressJwt({ secret: config.jwtSecret }),homeCtrl.addPost)
 module.exports = router;
