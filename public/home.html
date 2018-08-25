@@ -72,7 +72,7 @@
                 });
             }); $("#login").click(function () {
                 alert('login')
-                $.get("https://steemend.herokuapp.com/api/auth/login/", function (data, status) {
+                $.get("http://localhost:4040/api/auth/login/", function (data, status) {
                     alert("Status: " + status);
                     alert("data: " + JSON.stringify(data));
                     window.location.replace(data);
