@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 const config = require('../../config/config');
-const  sc2 = require('sc2-sdk');
+const sc2 = require('sc2-sdk');
 /**
  * SteemConnect Config
  */
@@ -10,7 +10,7 @@ const  sc2 = require('sc2-sdk');
 let steem = sc2.Initialize({
   app: process.env.APP_NAME,
   callbackURL: process.env.REDIRECT_URI,
-  scope: ["login"]
+  scope: ['login', 'vote', 'comment']
 });
 
 /**
@@ -25,8 +25,8 @@ function login(req, res, next) {
     let uri = steem.getLoginURL();
     res.json(uri);
   } else {
-    steem.setAccessToken(req.query.access_token);
     const token = jwt.sign({
+      access_token: req.query.access_token,
       username: req.query.username
     }, config.jwtSecret);
     return res.json({
@@ -34,7 +34,6 @@ function login(req, res, next) {
       username: req.query.username
     });
   }
-
   /*const err = new APIError('Authentication error', httpStatus.UNAUTHORIZED, true);
   return next(err);*/
 }
@@ -57,4 +56,4 @@ function logout(req, res) {
 
 
 
-module.exports = { login,logout };
+module.exports = { login, logout };
