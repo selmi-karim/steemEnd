@@ -147,8 +147,10 @@ function getHot(req, res) {
  */
 function addPost(req, res) {
     const { title, description,tags } = req.body
+    const tagsToAray = tags.split('#')
+    tagsToAray.pop()
     let customData = {
-        tags: tags,
+        tags: tagsToAray,
         app: 'steemitgram'
     }
     steemconnect.setAccessToken(req.user.access_token)
