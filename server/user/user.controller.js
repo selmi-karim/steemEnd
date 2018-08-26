@@ -11,6 +11,7 @@ function getImgUrl(text) {
 }
 
 
+
 /**
  * Get User profil.
  * @returns {User[]}
