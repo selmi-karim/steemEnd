@@ -147,12 +147,11 @@ function getHot(req, res) {
  */
 function addPost(req, res) {
     const { title, body,tags } = req.body
-    //console.log('tags:')
-    /*let customData = {
-        tags: JSON.parse(tags),
+    let customData = {
+        tags: tags,
         app: 'steemitgram'
-    }*/
-    /*steemconnect.setAccessToken(req.user.access_token)
+    }
+    steemconnect.setAccessToken(req.user.access_token)
     steemconnect.comment('', 'steemitgram', req.user.username,title.replace(/ /g, '-'), title,body,
     customData, (err, steemResponse) => {
         if (err) {
@@ -160,7 +159,6 @@ function addPost(req, res) {
         } else {
             res.send(steemResponse)
         }
-    });*/
-    res.send(req.body)
+    });
 }
 module.exports = { getUserPosts, getNew, getHot, getTrending, addPost }
