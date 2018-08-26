@@ -146,7 +146,7 @@ function getHot(req, res) {
  * @returns {Posts[]}
  */
 function addPost(req, res) {
-    const { title, body,tags } = req.query
+    const { title, body,tags } = req.body
     //console.log('tags:')
     /*let customData = {
         tags: JSON.parse(tags),
