@@ -6,7 +6,7 @@ const steem = require('steem')
  * private function to extract img from text
  */
 function getImgUrl(text) {
-  const regex = /(https?:\/\/steepshot.org\/api\/[^\s]+)/g;
+  const regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
   return text.replace(')', ' ').match(regex)
 }
 
@@ -113,7 +113,7 @@ function getUserPosts(req, res) {
   steem.api.getDiscussionsByAuthorBeforeDate(username, null, '2100-01-01T00:00:00', size, function (err, result) {
     var filter = []
     result.forEach(element => {
-      //console.log('-------------')
+      console.log(element.body)
       element.body = getImgUrl(element.body)
       var newData = {};
       newData['title'] = element.title
