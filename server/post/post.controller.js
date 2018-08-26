@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config/config');
 const steem = require('steem')
 const sc2 = require('sc2-sdk')
+const isImageUrl = require('is-image-url');
 
 /**
  * SteemConnect Config
@@ -25,31 +26,6 @@ function getImgUrl(text) {
 
 
 /**
- * Get Latest posts of specific user.
- * @property {number} req.query.size - Number of posts.
- * @returns {Posts[]}
- */
-function getUserPosts(req, res) {
-    const { size = 10 } = req.query  // by default 10 posts
-    const { username } = req.params
-
-    const query = {
-        tag: username, // This tag is used to filter the results by a specific post tag
-        limit: size, // This limit allows us to limit the overall results returned to 5
-    };
-    steem.api.getDiscussionsByBlog(query, function (err, result) {
-        var newObject = []
-        result.forEach(element => {
-            element.body = getImgUrl(element.body)
-            if (element.body !== null)
-                newObject.push(element)
-        });
-        res.send(newObject)
-    });
-}
-
-
-/**
  * Get Latest posts.
  * @property {number} req.query.size - Number of posts.
  * @returns {Posts[]}
@@ -64,7 +40,7 @@ function getNew(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            if (element.body !== null)
+            if (element.body !== null && isImageUrl(element.body[0]))
                 newObject.push(element)
         });
 
@@ -112,7 +88,7 @@ function getHot(req, res) {
         var newObject = []
         result.forEach(element => {
             element.body = getImgUrl(element.body)
-            if (element.body !== null)
+            if (element.body !== null && isImageUrl(element.body[0]))
                 newObject.push(element)
         });
         res.send(newObject)
@@ -181,4 +157,4 @@ function addPost(req, res) {
         }
     });
 }
-module.exports = { getUserPosts, getNew, getHot, getTrending, addPost, like }
+module.exports = {  getNew, getHot, getTrending, addPost, like }

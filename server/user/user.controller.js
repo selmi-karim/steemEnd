@@ -1,4 +1,5 @@
 const steem = require('steem')
+const isImageUrl = require('is-image-url');
 
 
 
@@ -20,7 +21,7 @@ function getUserProfil(req, res) {
   const { username } = req.params
   steem.api.getAccounts([username], function (err, result) {
     console.log(err, result)
-    let metadata = {"about": "","location": "","profile_image": "","cover_image": ""}
+    let metadata = { "about": "", "location": "", "profile_image": "", "cover_image": "" }
     if (result[0].json_metadata != '{}' && result[0].json_metadata != '')
       metadata = Object.values(JSON.parse(result[0].json_metadata))[0]
     metadata['post_count'] = result[0].post_count
@@ -112,21 +113,17 @@ function getUserPosts(req, res) {
   steem.api.getDiscussionsByAuthorBeforeDate(username, null, '2100-01-01T00:00:00', size, function (err, result) {
     var filter = []
     result.forEach(element => {
-      console.log(element.body)
-      console.log('------------\n')
       element.body = getImgUrl(element.body)
-      console.log(element.body)
-      console.log('**********\n')
       var newData = {};
       newData['title'] = element.title
-      if (element.body !== null)
+      if (element.body !== null && isImageUrl(element.body[0]))
         newData['source'] = { 'uri': element.body[0] }
       newData['id'] = element.id
 
       newData['category'] = element.category
       newData['net_votes'] = element.net_votes
       newData['pending_payout_value'] = element.pending_payout_value
-      if (element.body !== null)
+      if (element.body !== null && isImageUrl(element.body[0]))
         filter.push(newData)
     });
     res.send(filter)

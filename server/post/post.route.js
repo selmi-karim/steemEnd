@@ -10,11 +10,6 @@ router.route('/trending')
     .get(homeCtrl.getTrending)
 
 
-router.route('/username/:username')
-    /** GET /api/home/:userId - Get Latest posts of specific user. */
-    .get(homeCtrl.getUserPosts)
-
-
 router.route('/new')
     /** GET /api/home/:userId - Get most trending posts */
     .get(homeCtrl.getNew)
