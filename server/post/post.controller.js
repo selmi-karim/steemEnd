@@ -161,6 +161,6 @@ function addPost(req, res) {
             res.send(steemResponse)
         }
     });*/
-    res.send(req.query)
+    res.send(req.body)
 }
 module.exports = { getUserPosts, getNew, getHot, getTrending, addPost }
