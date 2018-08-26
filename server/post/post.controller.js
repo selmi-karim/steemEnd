@@ -146,7 +146,7 @@ function getHot(req, res) {
  * @returns {Posts[]}
  */
 function addPost(req, res) {
-    /*const { title, body,tags } = req.query
+    const { title, body,tags } = req.query
     //console.log('tags:')
     let customData = {
         tags: JSON.parse(tags),
@@ -160,8 +160,6 @@ function addPost(req, res) {
         } else {
             res.send(steemResponse)
         }
-    });*/
-    res.send('ops')
+    });
 }
-
 module.exports = { getUserPosts, getNew, getHot, getTrending, addPost }

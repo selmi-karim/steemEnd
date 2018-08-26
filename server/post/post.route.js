@@ -24,7 +24,6 @@ router.route('/hot')
     /** GET /api/home/:userId - Get latest posts liked by specific user */
     .get(homeCtrl.getHot)
 
-
 router.route('/addPost')
-    .get(expressJwt({ secret: config.jwtSecret }),homeCtrl.addPost)
+    .post(expressJwt({ secret: config.jwtSecret }),homeCtrl.addPost)
 module.exports = router;
