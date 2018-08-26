@@ -127,23 +127,40 @@ function getHot(req, res) {
     let permlink = req.body.permlink
     let weight = 10000
 
-    steem.vote(voter, author, permlink, weight, function (err, steemResponse) {
-      if (err) {
-          res.json({ error: err.error_description })
-      } else {
-          res.json({ id: postId })
-      }
-    });
+    
 
     
 })
 */
 
+/**
+ * Post to steem blockchain
+ * @param {Object} req 
+ * @param {Object} res 
+ */
+function like(req, res) {
+    const { voter, permlink,weight } = req.body
+    const tagsToAray = tags.split('#')
+    tagsToAray.pop()
+    let customData = {
+        tags: tagsToAray,
+        app: 'steemitgram'
+    }
+    steemconnect.setAccessToken(req.user.access_token)
+    steemconnect.vote(voter, req.user.username, permlink, weight, function (err, steemResponse) {
+        if (err) {
+            res.json({ error: err.error_description })
+        } else {
+            res.json({ id: postId })
+        }
+      });
+    
+}
 
 /**
- * Get Posts py Hot
- * @property {number} req.query.size - Number of posts.
- * @returns {Posts[]}
+ * Add Like to users posts
+ * @param {Object} req 
+ * @param {Object} res 
  */
 function addPost(req, res) {
     const { title, description,tags } = req.body
@@ -163,4 +180,4 @@ function addPost(req, res) {
         }
     });
 }
-module.exports = { getUserPosts, getNew, getHot, getTrending, addPost }
+module.exports = { getUserPosts, getNew, getHot, getTrending, addPost, like }
