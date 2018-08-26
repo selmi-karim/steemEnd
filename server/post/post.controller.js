@@ -154,7 +154,7 @@ function addPost(req, res) {
         app: 'steemitgram'
     }
     steemconnect.setAccessToken(req.user.access_token)
-    steemconnect.comment('', 'steemitgram', req.user.username,title.replace(/ /g, '-'), title,description,
+    steemconnect.comment('', 'steemitgram', req.user.username,title.toLowerCase().replace(/ /g, '-'), title,description,
     customData, (err, steemResponse) => {
         if (err) {
             res.send(err)
