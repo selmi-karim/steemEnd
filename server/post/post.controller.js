@@ -146,13 +146,13 @@ function getHot(req, res) {
  * @returns {Posts[]}
  */
 function addPost(req, res) {
-    const { title, body,tags } = req.body
+    const { title, description,tags } = req.body
     let customData = {
         tags: tags,
         app: 'steemitgram'
     }
     steemconnect.setAccessToken(req.user.access_token)
-    steemconnect.comment('', 'steemitgram', req.user.username,title.replace(/ /g, '-'), title,body,
+    steemconnect.comment('', 'steemitgram', req.user.username,title.replace(/ /g, '-'), title,description,
     customData, (err, steemResponse) => {
         if (err) {
             res.send(err)
