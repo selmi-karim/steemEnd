@@ -152,7 +152,7 @@ function addPost(req, res) {
         tags: JSON.parse(tags),
         app: 'steemitgram'
     }
-    steemconnect.setAccessToken(req.user.access_token)
+    /*steemconnect.setAccessToken(req.user.access_token)
     steemconnect.comment('', 'steemitgram', req.user.username,title.replace(/ /g, '-'), title,body,
     customData, (err, steemResponse) => {
         if (err) {
@@ -160,6 +160,7 @@ function addPost(req, res) {
         } else {
             res.send(steemResponse)
         }
-    });
+    });*/
+    res.send(req)
 }
 module.exports = { getUserPosts, getNew, getHot, getTrending, addPost }
