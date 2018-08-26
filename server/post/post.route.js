@@ -25,5 +25,6 @@ router.route('/hot')
     .get(homeCtrl.getHot)
 
 router.route('/addPost')
-    .post(expressJwt({ secret: config.jwtSecret }),homeCtrl.addPost)
+    //.post(expressJwt({ secret: config.jwtSecret }),homeCtrl.addPost)
+    .post(homeCtrl.addPost)
 module.exports = router;
