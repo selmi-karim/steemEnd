@@ -149,11 +149,11 @@ function addPost(req, res) {
     const { title, body,tags } = req.query
     //console.log('tags:')
     let customData = {
-        tags: tags,
+        tags: JSON.parse(tags),
         app: 'steemitgram'
     }
     steemconnect.setAccessToken(req.user.access_token)
-    steemconnect.comment('', 'steemitgram', req.user.username,title.a.replace(/ /g, '-'), title,body,
+    steemconnect.comment('', 'steemitgram', req.user.username,title.replace(/ /g, '-'), title,body,
     customData, (err, steemResponse) => {
         if (err) {
             res.send(err)
